@@ -1,0 +1,48 @@
+[
+  {
+    "Id": "f520f07c-3dff-4c0f-96a7-f9ea8833f726",
+    "Body": "CommentBodyTest1",
+    "UserId": "f3f9f5a2-1b8e-4c12-a35b-6e4c511bd737",
+    "User": null,
+    "PostId": "aee0b350-1a6f-40ed-9707-8cf6fa3d7e4e",
+    "Post": null
+  },
+
+  {
+    "Id": "164e134a-5d05-444a-9454-ea5c5edc82f0",
+    "Body": "CommentBodyTest2",
+    "UserId": "f3f9f5a2-1b8e-4c12-a35b-6e4c511bd737",
+    "User": null,
+    "PostId": "768f4a60-56aa-4cb4-9ae2-871ff71d75f6",
+    "Post": null
+  },
+
+  {
+    "Id": "b20755fe-5108-4935-a7e0-3d3bd7e584ff",
+    "Body": "CommentBodyTest3",
+    "UserId": "f3f9f5a2-1b8e-4c12-a35b-6e4c511bd737",
+    "User": null,
+    "PostId": "768f4a60-56aa-4cb4-9ae2-871ff71d75f6",
+    "Post": null
+  },
+
+  {
+    "Id": "e3db14c2-e856-4c78-bd2b-c68930a034c8",
+    "Body": "CommentBodyTest4",
+    "UserId": "ad93ac22-14db-4c1b-9133-85ddb60f026d",
+    "User": null,
+    "PostId": "768f4a60-56aa-4cb4-9ae2-871ff71d75f6",
+    "Post": null
+  },
+
+  {
+    "Id": "99826a80-e2e7-4919-af09-ae557bee24e5",
+    "Body": "CommentBodyTest5",
+    "UserId": "f3f9f5a2-1b8e-4c12-a35b-6e4c511bd737",
+    "User": null,
+    "PostId": "768f4a60-56aa-4cb4-9ae2-871ff71d75f6",
+    "Post": null
+  }
+
+
+]
