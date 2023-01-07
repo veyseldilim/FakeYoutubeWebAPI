@@ -17,6 +17,8 @@ namespace YoutubeWeb.Domain.Mappers
 
         CommentResponse Map(Comment comment);
 
+        IEnumerable<CommentResponse> Map(IEnumerable<Comment> comments);
+
 
 
 

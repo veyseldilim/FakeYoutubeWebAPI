@@ -18,6 +18,8 @@ namespace YoutubeWeb.Domain.Response
 
         public UserResponse? User { get; set; }
 
+        public IEnumerable<CommentResponse> Comments { get; set; }
+
         
     }
 }

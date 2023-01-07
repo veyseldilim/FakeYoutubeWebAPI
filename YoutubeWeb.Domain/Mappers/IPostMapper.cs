@@ -17,6 +17,8 @@ namespace YoutubeWeb.Domain.Mappers
 
         PostResponse Map(Post post);
 
+        IEnumerable<PostResponse> Map(IEnumerable<Post> posts);
+
 
     }
 }

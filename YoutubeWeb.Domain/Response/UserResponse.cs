@@ -12,6 +12,8 @@ namespace YoutubeWeb.Domain.Response
 
         public string? Name { get; set; }
 
+        public IEnumerable<PostResponse> Posts { get; set; }
 
+        public IEnumerable<CommentResponse> Comments { get; set; }
     }
 }
