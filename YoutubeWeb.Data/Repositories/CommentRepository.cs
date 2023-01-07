@@ -9,7 +9,7 @@ using YoutubeWeb.Domain.Repositories;
 
 namespace YoutubeWeb.Data.Repositories
 {
-    public class CommentRepository : IItemRepository<Comment>
+    public class CommentRepository : IItemRepository<Comment> , ICommentRepository
     {
         private readonly YoutubeContext _context;
         public IUnitOfWork UnitOfWork => _context;
@@ -49,6 +49,26 @@ namespace YoutubeWeb.Data.Repositories
         {
             _context.Entry(comment).State = EntityState.Modified;
             return comment;
+        }
+
+        public async Task<IEnumerable<Comment>> GetCommentsByPostId(Guid postId)
+        {
+            var comments = await _context.Comments
+                .AsNoTracking()
+                .Where(x => x.PostId == postId)
+                .ToListAsync();
+
+            return comments;
+        }
+
+        public async Task<IEnumerable<Comment>> GetCommentsByUserId(Guid userId)
+        {
+            var comments = await _context.Comments
+                .AsNoTracking()
+                .Where(x => x.UserId == userId)
+                .ToListAsync();
+
+            return comments;
         }
     }
 }

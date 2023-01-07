@@ -9,7 +9,7 @@ using YoutubeWeb.Domain.Repositories;
 
 namespace YoutubeWeb.Data.Repositories
 {
-    public class PostRepository : IItemRepository<Post> 
+    public class PostRepository : IItemRepository<Post> , IPostRepository
     {
 
         private readonly YoutubeContext _context;
@@ -53,6 +53,16 @@ namespace YoutubeWeb.Data.Repositories
         {
             _context.Entry(t).State= EntityState.Modified;
             return t;
+        }
+
+        public async Task<IEnumerable<Post>> GetPostsByUserId(Guid userId)
+        {
+            var posts = await _context.Posts
+                        .AsNoTracking()
+                        .Where(s => s.UserId == userId)
+                        .ToListAsync();
+
+            return posts;
         }
     }
 }

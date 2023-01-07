@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeWeb.Domain", "..\You
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A29FFDE1-C07F-41FE-8751-022C9661A176}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeWeb.Data.Tests", "..\YoutubeWeb.Data.Tests\YoutubeWeb.Data.Tests.csproj", "{F6208E7D-18F1-48AA-AB6E-3C523A4CBCE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeWeb.Data.Tests", "..\YoutubeWeb.Data.Tests\YoutubeWeb.Data.Tests.csproj", "{F6208E7D-18F1-48AA-AB6E-3C523A4CBCE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeWeb.Domain.Tests", "..\YoutubeWeb.Domain.Tests\YoutubeWeb.Domain.Tests.csproj", "{BA19F3E6-64AD-4D86-B2A0-C3C7D2427160}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeWeb.Fixtures", "..\YoutubeWeb.Fixtures\YoutubeWeb.Fixtures.csproj", "{D42B5284-5AFE-4685-8CDE-7EC6B86BCF31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,12 +39,22 @@ Global
 		{F6208E7D-18F1-48AA-AB6E-3C523A4CBCE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6208E7D-18F1-48AA-AB6E-3C523A4CBCE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6208E7D-18F1-48AA-AB6E-3C523A4CBCE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA19F3E6-64AD-4D86-B2A0-C3C7D2427160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA19F3E6-64AD-4D86-B2A0-C3C7D2427160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA19F3E6-64AD-4D86-B2A0-C3C7D2427160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA19F3E6-64AD-4D86-B2A0-C3C7D2427160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D42B5284-5AFE-4685-8CDE-7EC6B86BCF31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D42B5284-5AFE-4685-8CDE-7EC6B86BCF31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D42B5284-5AFE-4685-8CDE-7EC6B86BCF31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D42B5284-5AFE-4685-8CDE-7EC6B86BCF31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F6208E7D-18F1-48AA-AB6E-3C523A4CBCE9} = {A29FFDE1-C07F-41FE-8751-022C9661A176}
+		{BA19F3E6-64AD-4D86-B2A0-C3C7D2427160} = {A29FFDE1-C07F-41FE-8751-022C9661A176}
+		{D42B5284-5AFE-4685-8CDE-7EC6B86BCF31} = {A29FFDE1-C07F-41FE-8751-022C9661A176}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4F761AB-64E3-4C86-8D73-EB8F8BEAC1A5}

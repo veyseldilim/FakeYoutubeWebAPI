@@ -20,6 +20,8 @@ namespace YoutubeWeb.Domain.Services
 
         Task<IEnumerable<CommentResponse>> GetUserComments(GetUserRequest userRequest);
 
+        Task<IEnumerable<PostResponse>> GetUserPosts(GetUserRequest userRequest);
+
 
     }
 }
