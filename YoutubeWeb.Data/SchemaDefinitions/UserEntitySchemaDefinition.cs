@@ -17,6 +17,8 @@ namespace YoutubeWeb.Data.SchemaDefinitions
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id);
             builder.Property(x => x.Name).IsRequired().HasMaxLength(20);
+            
+            
 
         }
     }

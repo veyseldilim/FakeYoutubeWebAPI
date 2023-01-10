@@ -13,21 +13,21 @@ namespace YoutubeWeb.Domain.Services
 {
     public class CommentService : ICommentService
     {
-        private readonly IItemRepository<Comment> _commentRepository;
-        private readonly ICommentMapper _commentMapper;
+        private readonly ICommentRepository _commentRepository;
+        private readonly IMapper _mapper;
 
 
-        public CommentService(IItemRepository<Comment> commentRepository, ICommentMapper commentMapper)
+        public CommentService(ICommentRepository commentRepository, IMapper mapper)
         {
             _commentRepository = commentRepository;
-            _commentMapper = commentMapper;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<CommentResponse>> GetAllComments()
         {
             var comments = await _commentRepository.GetAsync();
 
-            return comments.Select(x => _commentMapper.Map(x));
+            return comments.Select(x => _mapper.Map(x));
 
 
         }
@@ -41,18 +41,18 @@ namespace YoutubeWeb.Domain.Services
 
             var comment = await _commentRepository.GetById(commentRequest.Id);
 
-            return _commentMapper.Map(comment);
+            return _mapper.Map(comment);
         }
 
 
         public async Task<CommentResponse> AddComment(AddCommentRequest commentRequest)
         {
-            var comment = _commentMapper.Map(commentRequest);
+            var comment = _mapper.Map(commentRequest);
             var result = _commentRepository.Add(comment);
 
             await _commentRepository.UnitOfWork.SaveChangesAsync();
 
-            return _commentMapper.Map(result);
+            return _mapper.Map(result);
 
         }
 
@@ -65,13 +65,13 @@ namespace YoutubeWeb.Domain.Services
                 throw new ArgumentException($"Entity with {commentRequest.Id} is not present");
             }
 
-            var entity = _commentMapper.Map(commentRequest);
+            var entity = _mapper.Map(commentRequest);
             var result = _commentRepository.Update(entity);
 
             await _commentRepository.UnitOfWork.SaveChangesAsync();
 
 
-            return _commentMapper.Map(result);
+            return _mapper.Map(result);
 
 
         }

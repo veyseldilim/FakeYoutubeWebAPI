@@ -12,9 +12,9 @@ namespace YoutubeWeb.Domain.Request.Comment
        
         public string? Body { get; set; }
 
-        public Guid? UserId { get; set; }
+        public Guid UserId { get; set; }
 
-        public Guid? PostId { get; set; }
+        public Guid PostId { get; set; }
 
        
     }

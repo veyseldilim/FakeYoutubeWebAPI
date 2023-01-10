@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using YoutubeWeb.Data.Tests.Extensions;
+using YoutubeWeb.Data;
 using YoutubeWeb.Domain.Entities;
+using YoutubeWeb.Fixtures.Extensions;
 
-namespace YoutubeWeb.Data.Tests
+namespace YoutubeWeb.Fixtures
 {
     public class TestYoutubeContext : YoutubeContext
     {

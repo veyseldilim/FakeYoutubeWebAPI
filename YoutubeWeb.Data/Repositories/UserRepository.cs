@@ -9,7 +9,7 @@ using YoutubeWeb.Domain.Repositories;
 
 namespace YoutubeWeb.Data.Repositories
 {
-    public class UserRepository : IItemRepository<User>, IUserRepository
+    public class UserRepository :  IUserRepository
     {
         private readonly YoutubeContext _context;
 

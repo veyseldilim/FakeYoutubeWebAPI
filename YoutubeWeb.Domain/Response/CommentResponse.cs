@@ -15,10 +15,9 @@ namespace YoutubeWeb.Domain.Response
 
         public Guid? UserId { get; set; }
 
-        public UserResponse? User { get; set; }
 
         public Guid? PostId { get; set; }
 
-        public PostResponse? Post { get; set; }
+       
     }
 }

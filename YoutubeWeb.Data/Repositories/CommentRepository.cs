@@ -9,7 +9,7 @@ using YoutubeWeb.Domain.Repositories;
 
 namespace YoutubeWeb.Data.Repositories
 {
-    public class CommentRepository : IItemRepository<Comment> , ICommentRepository
+    public class CommentRepository :  ICommentRepository
     {
         private readonly YoutubeContext _context;
         public IUnitOfWork UnitOfWork => _context;
@@ -32,8 +32,6 @@ namespace YoutubeWeb.Data.Repositories
             var comment = await _context.Comments
                 .AsNoTracking()
                 .Where(x => x.Id == id)
-                .Include(x => x.User)
-                .Include(x => x.Post)
                 .FirstOrDefaultAsync();
 
             return comment;

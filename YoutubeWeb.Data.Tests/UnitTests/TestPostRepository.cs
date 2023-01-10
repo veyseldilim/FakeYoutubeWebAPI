@@ -8,30 +8,37 @@ using System.Text;
 using System.Threading.Tasks;
 using YoutubeWeb.Data.Repositories;
 using YoutubeWeb.Domain.Entities;
+using YoutubeWeb.Fixtures;
 
 namespace YoutubeWeb.Data.Tests.UnitTests
 {
-    public class TestPostRepository
+    public class TestPostRepository : IDisposable
     {
+
+        private readonly YoutubeWebContextFactory _contextFactory;
+        private readonly PostRepository _sut;
+        private readonly TestYoutubeContext _context;
+
+        public TestPostRepository()
+        {
+            _contextFactory = new();
+            _context = _contextFactory.ContextInstance;
+            _sut = new(_context);
+        }
+
+        public void Dispose()
+        {
+            _contextFactory.ContextInstance.Dispose();
+        }
+
+
         [Fact]
         public async Task should_get_posts()
-        {
-            var options = new DbContextOptionsBuilder<YoutubeContext>()
-                         .UseInMemoryDatabase(databaseName: "should_get_posts_data")
-                         .Options;
+        {     
+            var result = await _sut.GetAsync();
 
-            await using (var context = new TestYoutubeContext(options))
-            {
-                context.Database.EnsureCreated();
-                var sut = new PostRepository(context);
-                var result = await sut.GetAsync();
-
-                result.ShouldNotBeNull();
-                result.Count().ShouldBe(3);
-
-
-
-            }
+            result.ShouldNotBeNull();
+            result.Count().ShouldBe(3);
 
         }
 
@@ -39,18 +46,9 @@ namespace YoutubeWeb.Data.Tests.UnitTests
         [InlineData("d43b3a4a-4120-46b6-abcc-47c0ca8a8b1e")]
         public async Task should_return_null_with_post_id_not_present(string guid)
         {
-            var options = new DbContextOptionsBuilder<YoutubeContext>()
-                .UseInMemoryDatabase(databaseName:
-                "should_return_null_with_post_id_not_present")
-                .Options;
 
-            await using (var context = new TestYoutubeContext(options))
-            {
-                context.Database.EnsureCreated();
-                var sut = new PostRepository(context);
-                var result = await sut.GetById(new Guid(guid));
-                result.ShouldBeNull();
-            }
+            var result = await _sut.GetById(new Guid(guid));
+            result.ShouldBeNull();
 
         }
 
@@ -58,42 +56,24 @@ namespace YoutubeWeb.Data.Tests.UnitTests
         [InlineData("bef114ce-19ba-46b3-b3c6-e8cd5db653ad")]
         public async Task should_return_post_by_id(string guid)
         {
-            var options = new DbContextOptionsBuilder<YoutubeContext>()
-                .UseInMemoryDatabase(databaseName:
-                "should_return_post_by_id_present")
-                .Options;
 
-            await using (var context = new TestYoutubeContext(options))
-            {
-                context.Database.EnsureCreated();
-                var sut = new PostRepository(context);
-                var result = await sut.GetById(new Guid(guid));
+            var result = await _sut.GetById(new Guid(guid));
 
-
-                result.ShouldNotBeNull();
-                result.Id.ShouldBe(new Guid(guid));
-                result.Title.ShouldBe("PostTitleTest3");
-                result.Body.ShouldBe("PostBodyTest3");
-                result.UserId.ShouldBe(new Guid("ad93ac22-14db-4c1b-9133-85ddb60f026d"));
-                result.PostComments?.Count.ShouldBe(0);
-            }
+            result.ShouldNotBeNull();
+            result.Id.ShouldBe(new Guid(guid));
+            result.Title.ShouldBe("PostTitleTest3");
+            result.Body.ShouldBe("PostBodyTest3");
+            result.UserId.ShouldBe(new Guid("ad93ac22-14db-4c1b-9133-85ddb60f026d"));
+            result.PostComments?.Count.ShouldBe(0);
+            
         }
 
         [Theory]
         [InlineData("768f4a60-56aa-4cb4-9ae2-871ff71d75f6")]
         public async Task should_return_post_by_id_with_comments(string guid)
         {
-            var options = new DbContextOptionsBuilder<YoutubeContext>()
-                .UseInMemoryDatabase(databaseName:
-                "should_return_post_by_id_with_comments")
-                .Options;
-
-            await using (var context = new TestYoutubeContext(options))
-            {
-                context.Database.EnsureCreated();
-                var sut = new PostRepository(context);
-                var result = await sut.GetById(new Guid(guid));
-
+           
+                var result = await _sut.GetById(new Guid(guid));
 
                 result.ShouldNotBeNull();
                 result.Id.ShouldBe(new Guid(guid));
@@ -102,7 +82,7 @@ namespace YoutubeWeb.Data.Tests.UnitTests
                 result.UserId.ShouldBe(new Guid("ad93ac22-14db-4c1b-9133-85ddb60f026d"));
                 result.PostComments?.Count.ShouldBe(4);
                 result.PostComments?.ToArray()[3].Id.ShouldBe(new Guid("99826a80-e2e7-4919-af09-ae557bee24e5"));
-            }
+            
         }
 
         
@@ -122,36 +102,27 @@ namespace YoutubeWeb.Data.Tests.UnitTests
 
             post.ShouldNotBeNull();
 
-            var options = new DbContextOptionsBuilder<YoutubeContext>()
-               .UseInMemoryDatabase(databaseName:
-               "should_add_new_post")
-               .Options;
 
-            await using (var context = new TestYoutubeContext(options))
-            {
-                context.Database.EnsureCreated();
-                var sut = new PostRepository(context);
+            var result = _sut.Add(post);
 
-                var result = sut.Add(post);
+            await _sut.UnitOfWork.SaveChangesAsync();
 
-                await sut.UnitOfWork.SaveChangesAsync();
-
-                var addedPost = await sut.GetById(new Guid($"{post.Id}"));
+            var addedPost = await _sut.GetById(new Guid($"{post.Id}"));
                 
-                addedPost.ShouldNotBeNull();
-                addedPost.Id.ShouldBe(post.Id);
-                addedPost.Body.ShouldBe(post.Body);
-                addedPost.PostComments.Count.ShouldBe(0);
-                addedPost.User.Name.ShouldBe("TestUser1");
+            addedPost.ShouldNotBeNull();
+            addedPost.Id.ShouldBe(post.Id);
+            addedPost.Body.ShouldBe(post.Body);
+            addedPost.PostComments.Count.ShouldBe(0);
+            
 
-                var newSut = new UserRepository(context);
-                var user = await newSut.GetById(new Guid("f3f9f5a2-1b8e-4c12-a35b-6e4c511bd737"));
-                //addedPost.User.Posts.ToList().Count.ShouldBe(2);
+            var newSut = new UserRepository(_context);
+            var user = await newSut.GetById(new Guid("f3f9f5a2-1b8e-4c12-a35b-6e4c511bd737"));
+            //addedPost.User.Posts.ToList().Count.ShouldBe(2);
 
-                user.Posts.ToList().Count().ShouldBe(2);
+            user.Posts.ToList().Count().ShouldBe(2);
                 
 
-            }
+            
         }
 
         
@@ -169,24 +140,15 @@ namespace YoutubeWeb.Data.Tests.UnitTests
             var post = JsonConvert.DeserializeObject<Post>(jsonPost);
             post.Body = "UpdatedBody";
 
-            var options = new DbContextOptionsBuilder<YoutubeContext>()
-                .UseInMemoryDatabase(databaseName: "should_update_post")
-                .Options;
-
-            await using var context = new TestYoutubeContext(options);
-            context.Database.EnsureCreated();
-            var sut = new PostRepository(context);
-
-            sut.Update(post);
-            await sut.UnitOfWork.SaveEntitiesAsync();
-            context.Posts
+           
+            _sut.Update(post);
+            await _sut.UnitOfWork.SaveEntitiesAsync();
+            _context.Posts
                 .FirstOrDefault(x => x.Id == post.Id)?.Body.ShouldBe("UpdatedBody");
 
 
         }
 
-        
 
-        
     }
 }

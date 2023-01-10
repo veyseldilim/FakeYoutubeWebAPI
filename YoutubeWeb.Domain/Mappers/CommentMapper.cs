@@ -15,6 +15,8 @@ namespace YoutubeWeb.Domain.Mappers
         private readonly IUserMapper _userMapper;
         private readonly IPostMapper _postMapper;
 
+
+
         public CommentMapper(IUserMapper userMapper, IPostMapper postMapper)
         {
             _userMapper = userMapper;
@@ -68,8 +70,7 @@ namespace YoutubeWeb.Domain.Mappers
                 Body = comment.Body,
                 UserId = comment.UserId,
                 PostId = comment.PostId,
-                User = _userMapper.Map(comment.User),
-                Post = _postMapper.Map(comment.Post)
+
             };
 
             return commentResponse;

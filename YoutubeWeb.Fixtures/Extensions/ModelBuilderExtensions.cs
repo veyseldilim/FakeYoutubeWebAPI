@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YoutubeWeb.Data.Tests.Extensions
+namespace YoutubeWeb.Fixtures.Extensions
 {
     public static class ModelBuilderExtensions
     {

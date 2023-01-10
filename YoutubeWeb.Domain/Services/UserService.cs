@@ -13,34 +13,30 @@ namespace YoutubeWeb.Domain.Services
 {
     public class UserService : IUserService
     {
-        private readonly IItemRepository<User> _userRepository;
-        private readonly IUserMapper _userMapper;
+        private readonly IUserRepository _userRepository;       
         private readonly ICommentRepository _commentRepository;
-        private readonly ICommentMapper _commentMapper;
-        private readonly IPostMapper _postMapper;
         private readonly IPostRepository _postRepository;
 
+        private readonly IMapper _mapper;
 
-        public UserService(IItemRepository<User> userRepository,
-            IUserMapper userMapper,
-            ICommentRepository commentRepository,
-            ICommentMapper commentMapper,
-            IPostMapper postMapper,
-            IPostRepository postRepository)
+
+        public UserService(IUserRepository userRepository,       
+            ICommentRepository commentRepository,      
+            IPostRepository postRepository,
+            IMapper mapper)
         {
-            _userRepository = userRepository;
-            _userMapper = userMapper;
+            _userRepository = userRepository;    
             _commentRepository = commentRepository;
-            _commentMapper = commentMapper;
-            _postMapper = postMapper;
             _postRepository = postRepository;
+
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<UserResponse>> GetAllUsers()
         {
             var users = await _userRepository.GetAsync();
 
-            return users.Select(x => _userMapper.Map(x));
+            return users.Select(x => _mapper.Map(x));
         }
 
         public async Task<UserResponse> GetUserById(GetUserRequest userRequest)
@@ -49,20 +45,20 @@ namespace YoutubeWeb.Domain.Services
 
             var result = await _userRepository.GetById(userRequest.Id);
 
-            return _userMapper.Map(result);
+            return _mapper.Map(result);
         }
 
 
 
         public async Task<UserResponse> AddUser(AddUserRequest userRequest)
         {
-            var user = _userMapper.Map(userRequest);
+            var user = _mapper.Map(userRequest);
 
             var result =  _userRepository.Add(user);
 
             await _userRepository.UnitOfWork.SaveChangesAsync();
 
-            return _userMapper.Map(result);
+            return _mapper.Map(result);
         }
 
         public async Task<UserResponse> EditUser(EditUserRequest userRequest)
@@ -74,12 +70,12 @@ namespace YoutubeWeb.Domain.Services
                 throw new ArgumentException($"Entity with {userRequest.Id} is not present");
             }
 
-            var entity = _userMapper.Map(userRequest);
+            var entity = _mapper.Map(userRequest);
             var result = _userRepository.Update(entity);
 
             await _userRepository.UnitOfWork.SaveChangesAsync();
 
-            return _userMapper.Map(result);
+            return _mapper.Map(result);
         }
 
        
@@ -88,9 +84,9 @@ namespace YoutubeWeb.Domain.Services
         {
             if(userRequest?.Id == null) throw new ArgumentNullException();
 
-            var result = await _commentRepository.GetCommentsByPostId(userRequest.Id);
+            var result = await _commentRepository.GetCommentsByUserId(userRequest.Id);
 
-            return result.Select(x => _commentMapper.Map(x));
+            return result.Select(x => _mapper.Map(x));
         }
 
         public async Task<IEnumerable<PostResponse>> GetUserPosts(GetUserRequest userRequest)
@@ -99,7 +95,7 @@ namespace YoutubeWeb.Domain.Services
 
             var result = await _postRepository.GetPostsByUserId(userRequest.Id);
 
-            return result.Select(x => _postMapper.Map(x));
+            return result.Select(x => _mapper.Map(x));
         }
     }
 }

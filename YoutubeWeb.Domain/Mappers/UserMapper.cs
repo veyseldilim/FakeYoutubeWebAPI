@@ -14,10 +14,13 @@ namespace YoutubeWeb.Domain.Mappers
         private readonly ICommentMapper _commentMapper;
         private readonly IPostMapper _postMapper;
 
-        public UserMapper(IPostMapper postMapper, ICommentMapper commentMapper)
+  
+
+        public UserMapper(ICommentMapper commentMapper, IPostMapper postMapper)
         {
-            this._postMapper = postMapper;
-            this._commentMapper = commentMapper;
+            
+            _commentMapper = commentMapper;
+            _postMapper = postMapper;
         }
 
         public User Map(AddUserRequest userRequest)

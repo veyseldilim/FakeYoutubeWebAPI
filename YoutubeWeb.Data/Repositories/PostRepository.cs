@@ -9,7 +9,7 @@ using YoutubeWeb.Domain.Repositories;
 
 namespace YoutubeWeb.Data.Repositories
 {
-    public class PostRepository : IItemRepository<Post> , IPostRepository
+    public class PostRepository :  IPostRepository
     {
 
         private readonly YoutubeContext _context;
@@ -35,7 +35,6 @@ namespace YoutubeWeb.Data.Repositories
             var post = await _context.Posts
                 .AsNoTracking()
                 .Where(x => x.Id == id)
-                .Include(x => x.User)
                 .Include(x => x.PostComments)
                 .FirstOrDefaultAsync();
                 

@@ -14,21 +14,19 @@ namespace YoutubeWeb.Domain.Services
     public class PostService : IPostService
     {
 
-        private readonly IItemRepository<Post> _postRepository;
-        private readonly IPostMapper _postMapper;
+        private readonly IPostRepository _postRepository;
         private readonly ICommentRepository _commentRepository;
-        private readonly ICommentMapper _commentMapper;
+
+        private readonly IMapper _mapper;
 
 
-        public PostService(IItemRepository<Post> postRepository, 
-            IPostMapper postMapper,
-            ICommentRepository commentRepository, 
-            ICommentMapper commentMapper)
+
+        public PostService(IPostRepository postRepository, ICommentRepository commentRepository,
+            IMapper mapper)
         {
             _postRepository = postRepository;
-            _postMapper = postMapper;
             _commentRepository = commentRepository;
-            _commentMapper = commentMapper;
+            _mapper = mapper;
         }
 
 
@@ -36,7 +34,7 @@ namespace YoutubeWeb.Domain.Services
         {
             var posts = await _postRepository.GetAsync();
 
-            return posts.Select(x => _postMapper.Map(x));
+            return posts.Select(x => _mapper.Map(x));
         }
 
         public async Task<PostResponse> GetPostById(GetPostRequest postRequest)
@@ -48,7 +46,7 @@ namespace YoutubeWeb.Domain.Services
 
             var existingPost = await _postRepository.GetById(postRequest.Id);
 
-            return _postMapper.Map(existingPost);
+            return _mapper.Map(existingPost);
 
         }
 
@@ -57,12 +55,13 @@ namespace YoutubeWeb.Domain.Services
 
         public async Task<PostResponse> AddPost(AddPostRequest postRequest)
         {
-            var post = _postMapper.Map(postRequest);
+            if (postRequest == null) throw new ArgumentNullException();
+            var post = _mapper.Map(postRequest);
             var result = _postRepository.Add(post);
 
             await _postRepository.UnitOfWork.SaveChangesAsync();
 
-            return _postMapper.Map(result);
+            return _mapper.Map(result);
         }
 
         public async Task<PostResponse> EditPost(EditPostRequest postRequest)
@@ -79,12 +78,12 @@ namespace YoutubeWeb.Domain.Services
 
             }
 
-            var entity = _postMapper.Map(postRequest);
+            var entity = _mapper.Map(postRequest);
             var result = _postRepository.Update(entity);
 
             await _postRepository.UnitOfWork.SaveEntitiesAsync();
 
-            return _postMapper.Map(result);
+            return _mapper.Map(result);
         }
 
        
@@ -98,7 +97,7 @@ namespace YoutubeWeb.Domain.Services
 
             var comments = await _commentRepository.GetCommentsByPostId(postRequest.Id);
 
-            return comments.Select(x => _commentMapper.Map(x));
+            return comments.Select(x => _mapper.Map(x));
 
             
         }

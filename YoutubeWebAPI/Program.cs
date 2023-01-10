@@ -18,9 +18,15 @@ namespace YoutubeWebAPI
             //Console.WriteLine($"ConnectionString: {connectionString}");
 
             builder.Services.AddYoutubeWebContext(connectionString);
-           
 
-            builder.Services.AddControllers();
+            builder.Services
+                .AddMappers()    
+                .AddRepositoryServices()
+                .AddServices()
+                .AddControllers()
+                .AddValidation();
+
+            
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

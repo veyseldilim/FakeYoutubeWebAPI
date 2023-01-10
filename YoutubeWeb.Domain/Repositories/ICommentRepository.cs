@@ -7,10 +7,18 @@ using YoutubeWeb.Domain.Entities;
 
 namespace YoutubeWeb.Domain.Repositories
 {
-    public interface ICommentRepository
+    public interface ICommentRepository : IRepository
     {
         Task<IEnumerable<Comment>> GetCommentsByPostId(Guid postId);
 
         Task<IEnumerable<Comment>> GetCommentsByUserId(Guid userId);
+
+        Task<IEnumerable<Comment>> GetAsync();
+
+        Task<Comment> GetById(Guid id);
+
+        Comment Add(Comment t);
+
+        Comment Update(Comment t);
     }
 }
