@@ -1,9 +1,16 @@
-﻿using FluentValidation.AspNetCore;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System.Reflection;
 using YoutubeWeb.Data.Repositories;
 using YoutubeWeb.Domain.Entities;
 using YoutubeWeb.Domain.Mappers;
 using YoutubeWeb.Domain.Repositories;
+using YoutubeWeb.Domain.Request.Comment.Validator;
+using YoutubeWeb.Domain.Request.User;
+using YoutubeWeb.Domain.Request.User.Validator;
 using YoutubeWeb.Domain.Services;
 
 namespace YoutubeWebAPI.Extensions
@@ -40,11 +47,17 @@ namespace YoutubeWebAPI.Extensions
 
         public static IMvcBuilder AddValidation(this IMvcBuilder builder)
         {
-            builder
-            .AddFluentValidation(configuration =>
-            configuration.RegisterValidatorsFromAssembly
-            (Assembly.GetExecutingAssembly()));
+
+            builder.AddFluentValidation(configuration =>
+            {
+                configuration.RegisterValidatorsFromAssemblyContaining<AddCommentRequestValidator>();
+
+
+            });
+
+              
             return builder;
+
         }
 
 

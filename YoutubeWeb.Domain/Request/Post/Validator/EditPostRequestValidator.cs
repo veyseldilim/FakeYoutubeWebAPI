@@ -17,7 +17,7 @@ namespace YoutubeWeb.Domain.Request.Post.Validator
             RuleFor(x => x.Title)
                 .NotEmpty().WithMessage("Title cannot be empty")
                 .Length(3, 50).WithMessage("Title length must be between 3 and 50");
-            RuleFor(x => x.Body).Length(100).WithMessage("Body length cannot be greater than 150");
+            RuleFor(x => x.Body).Length(0, 100).WithMessage("Body length cannot be greater than 150");
         }
     }
 }

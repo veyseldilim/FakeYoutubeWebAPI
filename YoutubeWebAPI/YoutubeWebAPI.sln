@@ -13,9 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A29FFDE1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeWeb.Data.Tests", "..\YoutubeWeb.Data.Tests\YoutubeWeb.Data.Tests.csproj", "{F6208E7D-18F1-48AA-AB6E-3C523A4CBCE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeWeb.Domain.Tests", "..\YoutubeWeb.Domain.Tests\YoutubeWeb.Domain.Tests.csproj", "{BA19F3E6-64AD-4D86-B2A0-C3C7D2427160}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeWeb.Domain.Tests", "..\YoutubeWeb.Domain.Tests\YoutubeWeb.Domain.Tests.csproj", "{BA19F3E6-64AD-4D86-B2A0-C3C7D2427160}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeWeb.Fixtures", "..\YoutubeWeb.Fixtures\YoutubeWeb.Fixtures.csproj", "{D42B5284-5AFE-4685-8CDE-7EC6B86BCF31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeWeb.Fixtures", "..\YoutubeWeb.Fixtures\YoutubeWeb.Fixtures.csproj", "{D42B5284-5AFE-4685-8CDE-7EC6B86BCF31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeWebAPI.Tests", "..\YoutubeWebAPI.Tests\YoutubeWebAPI.Tests.csproj", "{387AB754-FA69-4254-A47D-DC84E5BB4960}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{D42B5284-5AFE-4685-8CDE-7EC6B86BCF31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D42B5284-5AFE-4685-8CDE-7EC6B86BCF31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D42B5284-5AFE-4685-8CDE-7EC6B86BCF31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{387AB754-FA69-4254-A47D-DC84E5BB4960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{387AB754-FA69-4254-A47D-DC84E5BB4960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{387AB754-FA69-4254-A47D-DC84E5BB4960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{387AB754-FA69-4254-A47D-DC84E5BB4960}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{F6208E7D-18F1-48AA-AB6E-3C523A4CBCE9} = {A29FFDE1-C07F-41FE-8751-022C9661A176}
 		{BA19F3E6-64AD-4D86-B2A0-C3C7D2427160} = {A29FFDE1-C07F-41FE-8751-022C9661A176}
 		{D42B5284-5AFE-4685-8CDE-7EC6B86BCF31} = {A29FFDE1-C07F-41FE-8751-022C9661A176}
+		{387AB754-FA69-4254-A47D-DC84E5BB4960} = {A29FFDE1-C07F-41FE-8751-022C9661A176}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4F761AB-64E3-4C86-8D73-EB8F8BEAC1A5}

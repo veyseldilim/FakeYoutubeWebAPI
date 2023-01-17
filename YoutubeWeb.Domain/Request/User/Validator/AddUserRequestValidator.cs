@@ -13,7 +13,7 @@ namespace YoutubeWeb.Domain.Request.User.Validator
         {
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage("User name cannot be empty")
-                .Length(3, 20).WithMessage("Name length must be between 3 and 20");
+                .Length(3, 20).WithMessage($"User Name length must be between 3 and 20");
 
         }
     }

@@ -3,6 +3,8 @@ using YoutubeWeb.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using YoutubeWebAPI.Extensions;
+using FluentValidation.AspNetCore;
+using System.Reflection;
 
 namespace YoutubeWebAPI
 {
@@ -20,11 +22,14 @@ namespace YoutubeWebAPI
             builder.Services.AddYoutubeWebContext(connectionString);
 
             builder.Services
-                .AddMappers()    
+                .AddMappers()
                 .AddRepositoryServices()
                 .AddServices()
                 .AddControllers()
                 .AddValidation();
+
+           
+
 
             
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
