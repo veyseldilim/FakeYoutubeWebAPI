@@ -17,8 +17,8 @@ User can perform CRUD operations on Comments
 C# 10, .NET 6
 
 # Prerequisites
-.NET 6
-MS SQL
+1) .NET 6
+2) MS SQL
 
 # Testing
 The app has a solid suite of unit tests and integration tests with (almost) 100% line coverage
