@@ -18,7 +18,7 @@ C# 10, .NET 6
 
 # Prerequisites
 .NET 6
-MsSQL
+MS SQL
 
 # Testing
 The app has a solid suite of unit tests and integration tests with (almost) 100% line coverage
