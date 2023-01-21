@@ -19,11 +19,19 @@ namespace YoutubeWebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(int pageSize = 2, int pageIndex = 0)
         {
             var users = await _userService.GetAllUsers();
 
-            return Ok(users);
+            var totalUsers = users.Count();
+
+            var usersOnPage = users
+                             .OrderBy(c => c.Name)
+                             .Skip(pageSize * pageIndex)
+                             .Take(pageSize);
+
+            return Ok(usersOnPage);
+
         }
 
         [HttpGet("{id:guid}")]

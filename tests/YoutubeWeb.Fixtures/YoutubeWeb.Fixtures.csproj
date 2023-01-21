@@ -9,11 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-    <PackageReference Include="Shouldly" Version="4.1.0" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -26,8 +24,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\YoutubeWeb.Data\YoutubeWeb.Data.csproj" />
-    <ProjectReference Include="..\YoutubeWeb.Fixtures\YoutubeWeb.Fixtures.csproj" />
+    <ProjectReference Include="..\..\src\YoutubeWeb.Data\YoutubeWeb.Data.csproj" />
+    <ProjectReference Include="..\..\src\YoutubeWeb.Domain\YoutubeWeb.Domain.csproj" />
+    <ProjectReference Include="..\..\src\YoutubeWebAPI\YoutubeWebAPI.csproj" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\comment.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\post.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\user.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

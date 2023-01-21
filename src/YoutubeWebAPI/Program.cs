@@ -16,7 +16,7 @@ namespace YoutubeWebAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Get ConnectionString from appsettings.json file
-            var connectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
+            var connectionString = builder.Configuration.GetConnectionString("DatabaseConnectionContainer");
             //Console.WriteLine($"ConnectionString: {connectionString}");
 
             builder.Services.AddYoutubeWebContext(connectionString);

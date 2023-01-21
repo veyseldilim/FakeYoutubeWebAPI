@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeWeb.Domain.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeWeb.Fixtures", "..\YoutubeWeb.Fixtures\YoutubeWeb.Fixtures.csproj", "{D42B5284-5AFE-4685-8CDE-7EC6B86BCF31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeWebAPI.Tests", "..\YoutubeWebAPI.Tests\YoutubeWebAPI.Tests.csproj", "{387AB754-FA69-4254-A47D-DC84E5BB4960}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeWebAPI.Tests", "..\YoutubeWebAPI.Tests\YoutubeWebAPI.Tests.csproj", "{387AB754-FA69-4254-A47D-DC84E5BB4960}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
