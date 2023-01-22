@@ -22,6 +22,8 @@ namespace YoutubeWebAPI.Extensions
                          serverOptions.MigrationsAssembly
                          (typeof(Program).Assembly.FullName);
                      });
+
+                     
                 });
 
         }

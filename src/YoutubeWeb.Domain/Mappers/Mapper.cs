@@ -33,20 +33,20 @@ namespace YoutubeWeb.Domain.Mappers
             return comment;
         }
 
-        public Comment Map(EditCommentRequest commentRequest)
+        public Comment Map(Comment existingComment, EditCommentRequest commentRequest)
         {
             if (commentRequest == null)
             {
                 return null;
             }
 
-            var comment = new Comment()
-            {
-                Id = commentRequest.Id,
-                Body = commentRequest.Body,
-            };
 
-            return comment;
+            existingComment.Id = commentRequest.Id;
+            existingComment.Body = commentRequest.Body;
+                
+            
+
+            return existingComment;
         }
 
         public CommentResponse Map(Comment comment)
@@ -159,22 +159,19 @@ namespace YoutubeWeb.Domain.Mappers
             return post;
         }
 
-        public Post Map(EditPostRequest postRequest)
+        public Post Map(Post existingPost, EditPostRequest postRequest)
         {
             if (postRequest == null)
             {
                 return null;
             }
 
-            var post = new Post()
-            {
-                Id = postRequest.Id,
-                Title = postRequest.Title,
-                Body = postRequest.Body
-            };
+            existingPost.Id = postRequest.Id;
+            existingPost.Title = postRequest.Title;
+            existingPost.Body = postRequest.Body;
 
 
-            return post;
+            return existingPost;
 
         }
 

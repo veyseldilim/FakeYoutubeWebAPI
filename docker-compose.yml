@@ -1,0 +1,32 @@
+version: "3.9" # optional since v1.27.0
+
+networks:
+  demowebapiapp:
+services:
+  web_api:
+    build: . #build the docker image
+    container_name: veyseldilim_youtubewebapi_application
+    ports:
+      - "5000:80"
+    depends_on:
+      - sqldb
+
+    environment:
+      - DB_HOST=sqldb
+      - DB_NAME=YoutubeWebDB
+      - DB_SA_PASSWORD=BeckerBay129
+
+    networks:
+      - demowebapiapp
+
+  sqldb:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    container_name: sqldb
+    ports: # not actually needed, because the two services are on the same network
+      - "1434:1433"
+    environment:
+      - ACCEPT_EULA=y
+      - MSSQL_SA_PASSWORD=BeckerBay129
+
+    networks:
+      - demowebapiapp

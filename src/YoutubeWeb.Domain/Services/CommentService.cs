@@ -58,15 +58,16 @@ namespace YoutubeWeb.Domain.Services
 
         public async Task<CommentResponse> EditComment(EditCommentRequest commentRequest)
         {
-            var existingRecord = _commentRepository.GetById(commentRequest.Id);
+            var existingRecord = await _commentRepository.GetById(commentRequest.Id);
 
             if(existingRecord == null)
             {
                 throw new ArgumentException($"Entity with {commentRequest.Id} is not present");
             }
 
-            var entity = _mapper.Map(commentRequest);
-            var result = _commentRepository.Update(entity);
+            var entity = _mapper.Map(existingRecord, commentRequest);
+           
+            var result =  _commentRepository.Update(entity);
 
             await _commentRepository.UnitOfWork.SaveChangesAsync();
 

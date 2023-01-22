@@ -70,6 +70,7 @@ namespace YoutubeWeb.Domain.Services
             {
                 throw new ArgumentNullException();
             }
+
             var existingRecord = await _postRepository.GetById(postRequest.Id);
 
             if(existingRecord == null)
@@ -78,7 +79,7 @@ namespace YoutubeWeb.Domain.Services
 
             }
 
-            var entity = _mapper.Map(postRequest);
+            var entity = _mapper.Map(existingRecord, postRequest);
             var result = _postRepository.Update(entity);
 
             await _postRepository.UnitOfWork.SaveEntitiesAsync();

@@ -70,8 +70,8 @@ namespace YoutubeWeb.Domain.Services
                 throw new ArgumentException($"Entity with {userRequest.Id} is not present");
             }
 
-            var entity = _mapper.Map(userRequest);
-            var result = _userRepository.Update(entity);
+            existingRecord.Name = userRequest.Name;
+            var result = _userRepository.Update(existingRecord);
 
             await _userRepository.UnitOfWork.SaveChangesAsync();
 

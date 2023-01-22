@@ -13,7 +13,7 @@ namespace YoutubeWeb.Domain.Mappers
     {
         Post Map(AddPostRequest postRequest);
 
-        Post Map(EditPostRequest postRequest);
+        Post Map(Post post, EditPostRequest postRequest);
 
         PostResponse Map(Post post);
 

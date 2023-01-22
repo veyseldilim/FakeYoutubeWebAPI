@@ -45,7 +45,7 @@ namespace YoutubeWebAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments", "YoutubeWeb");
+                    b.ToTable("Comments", "YoutubeWebDB");
                 });
 
             modelBuilder.Entity("YoutubeWeb.Domain.Entities.Post", b =>
@@ -70,7 +70,7 @@ namespace YoutubeWebAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Posts", "YoutubeWeb");
+                    b.ToTable("Posts", "YoutubeWebDB");
                 });
 
             modelBuilder.Entity("YoutubeWeb.Domain.Entities.User", b =>
@@ -86,7 +86,7 @@ namespace YoutubeWebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", "YoutubeWeb");
+                    b.ToTable("Users", "YoutubeWebDB");
                 });
 
             modelBuilder.Entity("YoutubeWeb.Domain.Entities.Comment", b =>

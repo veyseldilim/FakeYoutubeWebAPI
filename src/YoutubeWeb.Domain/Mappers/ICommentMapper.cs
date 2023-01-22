@@ -13,7 +13,7 @@ namespace YoutubeWeb.Domain.Mappers
     {
         Comment Map(AddCommentRequest commentRequest);
 
-        Comment Map(EditCommentRequest commentRequest);
+        Comment Map(Comment existingComment, EditCommentRequest commentRequest);
 
         CommentResponse Map(Comment comment);
 

@@ -12,11 +12,11 @@ namespace YoutubeWebAPI.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "YoutubeWeb");
+                name: "YoutubeWebDB");
 
             migrationBuilder.CreateTable(
                 name: "Users",
-                schema: "YoutubeWeb",
+                schema: "YoutubeWebDB",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -29,7 +29,7 @@ namespace YoutubeWebAPI.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Posts",
-                schema: "YoutubeWeb",
+                schema: "YoutubeWebDB",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -43,7 +43,7 @@ namespace YoutubeWebAPI.Migrations
                     table.ForeignKey(
                         name: "FK_Posts_Users_UserId",
                         column: x => x.UserId,
-                        principalSchema: "YoutubeWeb",
+                        principalSchema: "YoutubeWebDB",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
@@ -51,7 +51,7 @@ namespace YoutubeWebAPI.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Comments",
-                schema: "YoutubeWeb",
+                schema: "YoutubeWebDB",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -65,14 +65,14 @@ namespace YoutubeWebAPI.Migrations
                     table.ForeignKey(
                         name: "FK_Comments_Posts_PostId",
                         column: x => x.PostId,
-                        principalSchema: "YoutubeWeb",
+                        principalSchema: "YoutubeWebDB",
                         principalTable: "Posts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Comments_Users_UserId",
                         column: x => x.UserId,
-                        principalSchema: "YoutubeWeb",
+                        principalSchema: "YoutubeWebDB",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
@@ -80,19 +80,19 @@ namespace YoutubeWebAPI.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_PostId",
-                schema: "YoutubeWeb",
+                schema: "YoutubeWebDB",
                 table: "Comments",
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_UserId",
-                schema: "YoutubeWeb",
+                schema: "YoutubeWebDB",
                 table: "Comments",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Posts_UserId",
-                schema: "YoutubeWeb",
+                schema: "YoutubeWebDB",
                 table: "Posts",
                 column: "UserId");
         }
@@ -102,15 +102,15 @@ namespace YoutubeWebAPI.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Comments",
-                schema: "YoutubeWeb");
+                schema: "YoutubeWebDB");
 
             migrationBuilder.DropTable(
                 name: "Posts",
-                schema: "YoutubeWeb");
+                schema: "YoutubeWebDB");
 
             migrationBuilder.DropTable(
                 name: "Users",
-                schema: "YoutubeWeb");
+                schema: "YoutubeWebDB");
         }
     }
 }
