@@ -19,6 +19,8 @@ namespace YoutubeWeb.Data.SchemaDefinitions
             builder.Property(x => x.Id);
             builder.Property(x => x.Name).IsRequired().HasMaxLength(20);
 
+
+            /*
             builder.HasData
                 (
                      new User
@@ -64,6 +66,7 @@ namespace YoutubeWeb.Data.SchemaDefinitions
 
                   );
 
+            */
         }
     }
 }

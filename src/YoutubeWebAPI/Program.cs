@@ -16,12 +16,15 @@ namespace YoutubeWebAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Get ConnectionString from appsettings.json file
-           // var connectionString = builder.Configuration.GetConnectionString("DatabaseConnectionContainer");
-            var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
-            var dbName = Environment.GetEnvironmentVariable("DB_NAME");
-            var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD");
-            var connectionString = $"Data Source={dbHost};Initial Catalog={dbName};TrustServerCertificate=True;User Id=SA; Password={dbPassword};";
-            //Console.WriteLine($"ConnectionString: {connectionString}");
+            // Connection string for local ms sql db.
+            var connectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
+
+            // Connection string for ms sql db on linux
+        //    var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+        //    var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+        //    var dbPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD");
+        //    var connectionString = $"Data Source={dbHost};Initial Catalog={dbName};TrustServerCertificate=True;User Id=SA; Password={dbPassword};";
+
 
             builder.Services.AddYoutubeWebContext(connectionString);
 
@@ -43,11 +46,13 @@ namespace YoutubeWebAPI
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-          //  if (app.Environment.IsDevelopment())
-          //  {
+         //   if (app.Environment.IsDevelopment())
+         //   {
                 app.UseSwagger();
                 app.UseSwaggerUI();
-          //  }
+                app.UseItToSeedSqlServer();
+
+           // }
 
             app.UseHttpsRedirection();
 

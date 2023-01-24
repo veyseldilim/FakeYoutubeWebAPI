@@ -23,7 +23,7 @@ services:
     image: "mcr.microsoft.com/mssql/server:2022-latest"
     container_name: sqldb
     ports: # not actually needed, because the two services are on the same network
-      - "1434:1433"
+      - "1434:1434"
     environment:
       - ACCEPT_EULA=y
       - MSSQL_SA_PASSWORD=BeckerBay129

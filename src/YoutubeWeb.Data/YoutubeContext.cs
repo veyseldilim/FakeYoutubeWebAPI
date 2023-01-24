@@ -35,6 +35,7 @@ namespace YoutubeWeb.Data
                     {
                         databaseCreator.CreateTables();
                         
+                        
                     }
                     
                 }
@@ -48,17 +49,13 @@ namespace YoutubeWeb.Data
 
        
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override async void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserEntitySchemaDefinition());       
             modelBuilder.ApplyConfiguration(new PostEntitySchemaDefinition());
             modelBuilder.ApplyConfiguration(new CommentEntitySchemaDefinition());
 
-           
-
             base.OnModelCreating(modelBuilder);
-
-            
         }
 
         

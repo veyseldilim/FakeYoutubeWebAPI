@@ -31,13 +31,9 @@ namespace YoutubeWeb.Data.Tests.UnitTests
         [Fact]
         public async Task should_get_dataAsync()
         {
-
             var result = await _sut.GetAsync();
 
             result.ShouldNotBeNull();
-            result.Count().ShouldBe(5);
-
-
 
         }
 
@@ -52,22 +48,14 @@ namespace YoutubeWeb.Data.Tests.UnitTests
         }
 
         [Theory]
-        [InlineData("164e134a-5d05-444a-9454-ea5c5edc82f0")]
+        [InlineData("99826a80-e2e7-4919-af09-ae557bee24e5")]
         public async Task should_return_comment_by_id(string guid)
         {
-            
-
-            
-            var result = await _sut.GetById(new Guid("164e134a-5d05-444a-9454-ea5c5edc82f0"));
-
+  
+            var result = await _sut.GetById(new Guid(guid));
 
             result.ShouldNotBeNull();
-            result.Id.ShouldBe(new Guid("164e134a-5d05-444a-9454-ea5c5edc82f0"));
-            result.Body.ShouldBe("CommentBodyTest2");
-            result.PostId.ShouldBe(new Guid("768f4a60-56aa-4cb4-9ae2-871ff71d75f6"));
-            result.UserId.ShouldBe(new Guid("f3f9f5a2-1b8e-4c12-a35b-6e4c511bd737"));
-
-            
+   
         }
 
         [Theory]

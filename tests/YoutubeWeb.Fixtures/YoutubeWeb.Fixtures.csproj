@@ -31,14 +31,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Data\comment.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Update="TestData\comment.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\post.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Update="TestData\post.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\user.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Update="TestData\user.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

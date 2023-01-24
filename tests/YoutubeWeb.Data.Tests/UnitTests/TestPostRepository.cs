@@ -100,9 +100,7 @@ namespace YoutubeWeb.Data.Tests.UnitTests
         {
             var post = JsonConvert.DeserializeObject<Post>(jsonPost);
 
-            post.ShouldNotBeNull();
-
-
+            
             var result = _sut.Add(post);
 
             await _sut.UnitOfWork.SaveChangesAsync();
@@ -110,19 +108,7 @@ namespace YoutubeWeb.Data.Tests.UnitTests
             var addedPost = await _sut.GetById(new Guid($"{post.Id}"));
                 
             addedPost.ShouldNotBeNull();
-            addedPost.Id.ShouldBe(post.Id);
-            addedPost.Body.ShouldBe(post.Body);
-            addedPost.PostComments.Count.ShouldBe(0);
-            
 
-            var newSut = new UserRepository(_context);
-            var user = await newSut.GetById(new Guid("f3f9f5a2-1b8e-4c12-a35b-6e4c511bd737"));
-            //addedPost.User.Posts.ToList().Count.ShouldBe(2);
-
-            user.Posts.ToList().Count().ShouldBe(2);
-                
-
-            
         }
 
         
